@@ -7,7 +7,7 @@
 #include "UEDemoCharacter.generated.h"
 
 UCLASS(config=Game)
-class AUEDemoCharacter : public ACharacter
+class AUEDemoCharacter : public ACharacter,public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
