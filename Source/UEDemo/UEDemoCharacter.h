@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "GameplayAbilities/Public/AbilitySystemInterface.h"
+#include "GameplayAbilities/Public/Abilities/GameplayAbility.h"
+#include "GameplayAbilities/Public/AbilitySystemComponent.h"
 #include "UEDemoCharacter.generated.h"
 
 UCLASS(config=Game)
@@ -18,6 +21,8 @@ class AUEDemoCharacter : public ACharacter,public IAbilitySystemInterface
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+
+	UAbilitySystemComponent* AbilitySystemComponent;
 public:
 	AUEDemoCharacter();
 
@@ -30,6 +35,8 @@ public:
 	float BaseLookUpRate;
 
 protected:
+
+	virtual void PossessedBy(AController* NewController)override;
 
 	/** Resets HMD orientation in VR. */
 	void OnResetVR();
@@ -68,5 +75,11 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const {return AbilitySystemComponent;}
+
+	UFUNCTION(BlueprintCallable)
+	void GiveAbility(TSubclassOf<UGameplayAbility> Ability);
 };
 

@@ -8,12 +8,15 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameplayAbilities/Public/GameplayAbilitySpec.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AUEDemoCharacter
 
 AUEDemoCharacter::AUEDemoCharacter()
 {
+	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
@@ -76,6 +79,27 @@ void AUEDemoCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerIn
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AUEDemoCharacter::OnResetVR);
 }
 
+
+void AUEDemoCharacter::GiveAbility(TSubclassOf<UGameplayAbility> Ability)
+{
+	if (AbilitySystemComponent)
+	{
+		if (HasAuthority() && Ability)
+		{
+			AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(Ability,1));
+		}
+		AbilitySystemComponent->InitAbilityActorInfo(this,this);
+	}
+}
+
+void AUEDemoCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent->InitAbilityActorInfo(this,this);
+	}
+}
 
 void AUEDemoCharacter::OnResetVR()
 {
