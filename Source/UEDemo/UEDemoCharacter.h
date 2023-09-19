@@ -22,6 +22,7 @@ class AUEDemoCharacter : public ACharacter,public IAbilitySystemInterface
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
 
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,meta = (AllowPrivateAccess = "true"))
 	UAbilitySystemComponent* AbilitySystemComponent;
 public:
 	AUEDemoCharacter();
@@ -76,7 +77,7 @@ public:
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
-
+	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const {return AbilitySystemComponent;}
 
 	UFUNCTION(BlueprintCallable)
