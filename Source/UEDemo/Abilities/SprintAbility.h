@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
+#include "GameplayAbilitySpec.h"
+#include "Abilities/GameplayAbilityTypes.h"
 #include "SprintAbility.generated.h"
 
 /**
@@ -17,6 +19,8 @@ class UEDEMO_API USprintAbility : public UGameplayAbility
 
 public:
 	USprintAbility();
+
+	virtual void ApplyCooldown(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const override;
 
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo,
 		const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
