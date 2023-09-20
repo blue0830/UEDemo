@@ -14,4 +14,6 @@ class UEDEMO_API USprintCooldown : public UGameplayEffect
 {
 	GENERATED_BODY()
 	
+public:
+	USprintCooldown();
 };
