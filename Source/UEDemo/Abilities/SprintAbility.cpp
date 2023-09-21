@@ -16,7 +16,8 @@ void USprintAbility::ApplyCooldown(const FGameplayAbilitySpecHandle Handle, cons
 	if (CooldownEffect)
 	{
 		FGameplayEffectSpecHandle CooldownEffectSpecHandle = MakeOutgoingGameplayEffectSpec(CooldownEffect->GetClass(),GetAbilityLevel());
-		CooldownEffectSpecHandle.Data.Get()->SetSetByCallerMagnitude(FGameplayTag::RequestGameplayTag(FName("Cooldown.TestSprint")),5);
+		//CooldownEffectSpecHandle.Data.Get()->DynamicGrantedTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Cooldown.TestSprint")));
+		CooldownEffectSpecHandle.Data.Get()->SetSetByCallerMagnitude(FGameplayTag::RequestGameplayTag(FName("Cooldown.TestSprint")),1);
 		ApplyGameplayEffectSpecToOwner(Handle,ActorInfo,ActivationInfo,CooldownEffectSpecHandle);
 	}
 }

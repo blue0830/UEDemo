@@ -6,7 +6,12 @@
 USprintCooldown::USprintCooldown()
 {
 	DurationPolicy = EGameplayEffectDurationType::HasDuration;
-	DurationMagnitude = FGameplayEffectModifierMagnitude(FSetByCallerFloat());
+	FSetByCallerFloat Value = FSetByCallerFloat();
+	Value.DataTag = FGameplayTag::RequestGameplayTag(FName("Cooldown.TestSprint"));
+	DurationMagnitude = FGameplayEffectModifierMagnitude(Value);
+	//Modifiers.Add()
+	
+	
 	//GrantedTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Ability.Sprint")));
 	FGameplayTag GameplayTag = FGameplayTag::RequestGameplayTag(FName("Cooldown.Sprint"));
 	//InheritableOwnedTagsContainer.Added(GameplayTag);
