@@ -3,6 +3,11 @@
 
 #include "SprintAbility.h"
 #include "GameplayEffect/SprintCooldown.h"
+#include "../UEDemoCharacter.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/MovementComponent.h"
+#include "GameFramework/PawnMovementComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 USprintAbility::USprintAbility()
 {
@@ -29,5 +34,14 @@ void USprintAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle, co
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Sprint Ability Activated"));
 	UE_LOG(LogTemp,Log,TEXT("Sprint Ability Activate ..."));
 	//EndAbility(Handle,ActorInfo,ActivationInfo,false,false);
+	AUEDemoCharacter* Character = Cast<AUEDemoCharacter>( ActorInfo->AvatarActor.Get());
+	if (Character)
+	{
+		//UCharacterMovementComponent* MovementComponent = Cast<UCharacterMovementComponent>( Character->GetMovementComponent());
+		//MovementComponent->MaxWalkSpeed = 10000;
+		FVector Forward = Character->GetActorForwardVector() * 10000;
+		Forward.Z = 0;
+		Character->LaunchCharacter(Forward,false,false);
+	}
 	K2_EndAbility();
 }
