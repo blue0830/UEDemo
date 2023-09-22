@@ -9,6 +9,7 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameplayAbilities/Public/GameplayAbilitySpec.h"
+#include "Types.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AUEDemoCharacter
@@ -77,6 +78,12 @@ void AUEDemoCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerIn
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AUEDemoCharacter::OnResetVR);
+
+	if (AbilitySystemComponent)
+	{
+		FGameplayAbilityInputBinds BindInfo("ConfirmTarget", "CancelTarget", "EAbilityInputId", static_cast<int32>(EAbilityInputId::Confirm), static_cast<int32>(EAbilityInputId::Cancel));
+		AbilitySystemComponent->BindAbilityActivationToInputComponent(PlayerInputComponent,BindInfo);
+	}
 }
 
 
