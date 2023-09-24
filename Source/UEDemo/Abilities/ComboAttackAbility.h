@@ -26,5 +26,5 @@ protected:
 	int32 AttackCount;
 	int32 MaxAttackCount;
 
-	TArray<UAnimMontage*> AttackMontages;
+	TArray<UAbilityBase> AttackAbilities;
 };

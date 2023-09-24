@@ -13,13 +13,7 @@ void UComboAttackAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 {
 	Super::ActivateAbility(Handle,ActorInfo,ActivationInfo,TriggerEventData);
 
-	AUEDemoCharacter* Character = Cast<AUEDemoCharacter>( ActorInfo->AvatarActor.Get());
-	if (Character)
-	{
-		Character->PlayAnimMontage(AttackMontages[AttackCount]);
-		
-		//Character->GetAbilitySystemComponent()->try
-	}
+	
 
 	AttackCount++;
 }
