@@ -10,6 +10,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameplayAbilities/Public/GameplayAbilitySpec.h"
 #include "Types.h"
+#include "Abilities/AbilityBase.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AUEDemoCharacter
@@ -87,13 +88,18 @@ void AUEDemoCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerIn
 }
 
 
-void AUEDemoCharacter::GiveAbility(TSubclassOf<UGameplayAbility> Ability)
+void AUEDemoCharacter::GiveAbility()
 {
 	if (AbilitySystemComponent)
 	{
-		if (HasAuthority() && Ability)
+		if (HasAuthority() && Abilities.Num() > 0)
 		{
-			AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(Ability,1));
+			for (int32 i = 0 ; i < Abilities.Num() ; i ++)
+			{
+			
+				AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(Abilities[i],1,static_cast<int32>( Abilities[i].GetDefaultObject()->AbilityInputId)));
+			}
+			//AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(Ability,1,Ability->input));
 		}
 		AbilitySystemComponent->InitAbilityActorInfo(this,this);
 	}

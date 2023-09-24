@@ -9,6 +9,8 @@
 #include "GameplayAbilities/Public/AbilitySystemComponent.h"
 #include "UEDemoCharacter.generated.h"
 
+class UAbilityBase;
+
 UCLASS(config=Game)
 class AUEDemoCharacter : public ACharacter,public IAbilitySystemInterface
 {
@@ -34,6 +36,8 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
+
+	TArray<TSubclassOf<UAbilityBase>> Abilities;
 
 protected:
 
@@ -81,6 +85,6 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const {return AbilitySystemComponent;}
 
 	UFUNCTION(BlueprintCallable)
-	void GiveAbility(TSubclassOf<UGameplayAbility> Ability);
+	void GiveAbility();
 };
 

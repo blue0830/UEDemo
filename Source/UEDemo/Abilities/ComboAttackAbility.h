@@ -5,13 +5,14 @@
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
 #include "../Types.h"
+#include "AbilityBase.h"
 #include "ComboAttackAbility.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class UEDEMO_API UComboAttackAbility : public UGameplayAbility
+class UEDEMO_API UComboAttackAbility : public UAbilityBase
 {
 	GENERATED_BODY()
 	
@@ -24,9 +25,6 @@ protected:
 
 	int32 AttackCount;
 	int32 MaxAttackCount;
-
-	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly,Category = "AbilityInput")
-		EAbilityInputId AbilityInputId;
 
 	TArray<UAnimMontage*> AttackMontages;
 };

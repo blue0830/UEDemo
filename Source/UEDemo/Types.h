@@ -13,5 +13,6 @@ enum class EAbilityInputId : uint8
 	Confirm			UMETA(DisplayName = "Confirm"),
 	Cancel			UMETA(DisplayName = "Cancel"),
 	Sprint			UMETA(DisplayName = "Sprint"),
+	Attack			UMETA(DisplayName = "Attack"),
 	Combo1			UMETA(DisplayName = "Combo1")
 };
