@@ -13,7 +13,7 @@ void UComboAttackAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 {
 	Super::ActivateAbility(Handle,ActorInfo,ActivationInfo,TriggerEventData);
 
-	
+	UE_LOG(LogTemp, Warning, TEXT("ComboAttackAbility Activated"));
 
 	AttackCount++;
 }
