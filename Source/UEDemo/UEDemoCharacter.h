@@ -37,6 +37,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+	int32 ComboIndex;
+
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly,Category = "Abilities")
 	TArray<TSubclassOf<UAbilityBase>> Abilities;
 
