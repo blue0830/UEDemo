@@ -105,6 +105,23 @@ void AUEDemoCharacter::GiveAbility()
 	}
 }
 
+void AUEDemoCharacter::ComboAttack()
+{
+	if(!AbilitySystemComponent || ComboAbilities.Num() == 0) return;
+
+	if (AbilitySystemComponent->TryActivateAbilityByClass(ComboAbilities[ComboIndex]))
+	{
+		ComboIndex = (ComboIndex + 1) % ComboAbilities.Num();
+	}
+
+
+}
+
+void AUEDemoCharacter::ResetCombo()
+{
+	ComboIndex = 0;
+}
+
 void AUEDemoCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);

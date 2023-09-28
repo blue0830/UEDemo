@@ -41,6 +41,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly,Category = "Abilities")
 	TArray<TSubclassOf<UAbilityBase>> Abilities;
+	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly,Category = "Abilities")
+	TArray<TSubclassOf<UAbilityBase>> ComboAbilities;
 
 protected:
 
@@ -89,5 +91,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void GiveAbility();
+
+	UFUNCTION(BlueprintCallable)
+	void ComboAttack();
+	UFUNCTION(BlueprintCallable)
+	void ResetCombo();
 };
 

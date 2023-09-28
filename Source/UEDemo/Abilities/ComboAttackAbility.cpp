@@ -13,8 +13,10 @@ void UComboAttackAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 {
 	Super::ActivateAbility(Handle,ActorInfo,ActivationInfo,TriggerEventData);
 
-	UE_LOG(LogTemp, Warning, TEXT("ComboAttackAbility Activated , AttackCount = %d"),AttackCount);
-
-	AttackCount++;
+	AUEDemoCharacter* Character = Cast<AUEDemoCharacter>( ActorInfo->AvatarActor.Get());
+	if (Character)
+	{
+		Character->ComboAttack();
+	}
 	K2_EndAbility();
 }

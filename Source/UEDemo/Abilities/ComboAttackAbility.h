@@ -6,6 +6,7 @@
 #include "Abilities/GameplayAbility.h"
 #include "../Types.h"
 #include "AbilityBase.h"
+#include "Animation/AnimMontage.h"
 #include "ComboAttackAbility.generated.h"
 
 /**
