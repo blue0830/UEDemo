@@ -17,9 +17,11 @@ void UAttackAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle, co
 
 	
 	//ActorInfo->AbilitySystemComponent->PlayMontage(this,ActivationInfo, MontageToPlay, 1.f, FName("None"));
-	TWeakObjectPtr< UAnimInstance> AnimInstance = ActorInfo->AnimInstance;
-	AnimInstance->Montage_Play(MontageToPlay, 1.f, EMontagePlayReturnType::MontageLength, 0.f, true);
+	AUEDemoCharacter* Character = Cast<AUEDemoCharacter>(ActorInfo->AvatarActor.Get());
+	TWeakObjectPtr< UAnimInstance> AnimInstance = Character->GetMesh()->GetAnimInstance();
 	AnimInstance->OnMontageBlendingOut.AddDynamic(this, &UAttackAbility::OnMontageBlendingOut);
+	AnimInstance->Montage_Play(MontageToPlay, 1.f, EMontagePlayReturnType::MontageLength, 0.f, true);
+
 	
 }
 

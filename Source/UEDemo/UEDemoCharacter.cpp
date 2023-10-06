@@ -107,11 +107,12 @@ void AUEDemoCharacter::GiveAbility()
 
 void AUEDemoCharacter::ComboAttack()
 {
-	if(!AbilitySystemComponent || ComboAbilities.Num() == 0) return;
+	if(!AbilitySystemComponent || ComboAbilities.Num() == 0 || !bCanCombo) return;
 
 	if (AbilitySystemComponent->TryActivateAbilityByClass(ComboAbilities[ComboIndex]))
 	{
 		ComboIndex = (ComboIndex + 1) % ComboAbilities.Num();
+		bCanCombo = false;
 	}
 
 
@@ -120,6 +121,7 @@ void AUEDemoCharacter::ComboAttack()
 void AUEDemoCharacter::ResetCombo()
 {
 	ComboIndex = 0;
+	bCanCombo = true;
 }
 
 void AUEDemoCharacter::PossessedBy(AController* NewController)

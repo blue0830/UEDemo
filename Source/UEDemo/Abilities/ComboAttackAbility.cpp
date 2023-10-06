@@ -3,10 +3,10 @@
 
 #include "ComboAttackAbility.h"
 #include "../UEDemoCharacter.h"
+#include "GameplayTagContainer.h"
 
 UComboAttackAbility::UComboAttackAbility()
 {
-
 }
 
 void UComboAttackAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
@@ -18,5 +18,6 @@ void UComboAttackAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 	{
 		Character->ComboAttack();
 	}
+	
 	K2_EndAbility();
 }

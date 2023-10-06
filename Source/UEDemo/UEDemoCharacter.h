@@ -45,6 +45,9 @@ public:
 	TArray<TSubclassOf<UAbilityBase>> ComboAbilities;
 
 protected:
+	// APawn interface
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	// End of APawn interface
 
 	virtual void PossessedBy(AController* NewController)override;
 
@@ -76,15 +79,17 @@ protected:
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
 protected:
-	// APawn interface
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	// End of APawn interface
 
+	bool bCanCombo = true;
 public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	FORCEINLINE bool CanCombo() const {return bCanCombo;}
+	UFUNCTION(BlueprintCallable)
+	void SetCanCombo(bool Combo) { bCanCombo = Combo;}
 
 	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const {return AbilitySystemComponent;}
