@@ -24,6 +24,8 @@ public:
 private:
 	UFUNCTION()
 	void OnMontageBlendingOut(UAnimMontage* Montage, bool bInterrupted);
+	//UFUNCTION()
+	//void OnMontageEnded();
 
 protected:
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)

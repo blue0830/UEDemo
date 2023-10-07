@@ -17,6 +17,7 @@ void UComboAttackAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 	if (Character)
 	{
 		Character->ComboAttack();
+		UE_LOG(LogTemp,Log,TEXT("ComboAttack start ..."));
 	}
 	
 	K2_EndAbility();
