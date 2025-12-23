@@ -1,7 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "UEDemoCharacter.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -77,9 +76,6 @@ void AUEDemoCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerIn
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &AUEDemoCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &AUEDemoCharacter::TouchStopped);
 
-	// VR headset functionality
-	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AUEDemoCharacter::OnResetVR);
-
 	if (AbilitySystemComponent)
 	{
 		FGameplayAbilityInputBinds BindInfo("ConfirmTarget", "CancelTarget", "EAbilityInputId", static_cast<int32>(EAbilityInputId::Confirm), static_cast<int32>(EAbilityInputId::Cancel));
@@ -130,17 +126,6 @@ void AUEDemoCharacter::PossessedBy(AController* NewController)
 	{
 		AbilitySystemComponent->InitAbilityActorInfo(this,this);
 	}
-}
-
-void AUEDemoCharacter::OnResetVR()
-{
-	// If UEDemo is added to a project via 'Add Feature' in the Unreal Editor the dependency on HeadMountedDisplay in UEDemo.Build.cs is not automatically propagated
-	// and a linker error will result.
-	// You will need to either:
-	//		Add "HeadMountedDisplay" to [YourProject].Build.cs PublicDependencyModuleNames in order to build successfully (appropriate if supporting VR).
-	// or:
-	//		Comment or delete the call to ResetOrientationAndPosition below (appropriate if not supporting VR)
-	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
 }
 
 void AUEDemoCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
